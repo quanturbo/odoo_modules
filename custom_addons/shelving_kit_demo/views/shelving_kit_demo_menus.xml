@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_shelving_demo_product_list" model="ir.ui.view">
+            <field name="name">shelving.demo.product.list</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <list string="Shelving Products">
+                    <field name="default_code" string="SKU"/>
+                    <field name="name"/>
+                    <field name="is_storable" string="Stocked"/>
+                    <field name="sale_ok" string="Can Sell"/>
+                    <field name="purchase_ok" string="Can Buy"/>
+                    <field name="uom_id"/>
+                    <field name="standard_price" string="Unit Cost"/>
+                    <field name="qty_available" string="On Hand"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_shelving_demo_bom_line_list" model="ir.ui.view">
+            <field name="name">shelving.demo.bom.line.list</field>
+            <field name="model">mrp.bom.line</field>
+            <field name="arch" type="xml">
+                <list string="Shelving Kit Components">
+                    <field name="bom_id"/>
+                    <field name="product_id"/>
+                    <field name="product_qty" string="Kit Qty"/>
+                    <field name="product_uom_id" string="UoM"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_shelving_demo_supplierinfo_list" model="ir.ui.view">
+            <field name="name">shelving.demo.supplierinfo.list</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="arch" type="xml">
+                <list string="Shelving Vendor Prices">
+                    <field name="partner_id" string="Vendor"/>
+                    <field name="product_id"/>
+                    <field name="product_code" string="Vendor SKU"/>
+                    <field name="price" string="Vendor List Price"/>
+                    <field name="discount" string="Discount %"/>
+                    <field name="price_discounted" string="Net Cost"/>
+                    <field name="delay" string="Lead Time"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_shelving_demo_orderpoint_list" model="ir.ui.view">
+            <field name="name">shelving.demo.orderpoint.list</field>
+            <field name="model">stock.warehouse.orderpoint</field>
+            <field name="arch" type="xml">
+                <list string="Shelving Reordering Rules">
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="route_id"/>
+                    <field name="qty_on_hand" string="On Hand"/>
+                    <field name="product_min_qty" string="Min"/>
+                    <field name="product_max_qty" string="Max"/>
+                    <field name="product_uom" string="UoM"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_shelving_demo_stock_move_list" model="ir.ui.view">
+            <field name="name">shelving.demo.stock.move.list</field>
+            <field name="model">stock.move</field>
+            <field name="arch" type="xml">
+                <list string="Shelving Stock Moves">
+                    <field name="picking_id" string="Transfer"/>
+                    <field name="product_id"/>
+                    <field name="product_uom_qty" string="Demand"/>
+                    <field name="quantity" string="Reserved/Done"/>
+                    <field name="product_uom" string="UoM"/>
+                    <field name="location_id" string="From"/>
+                    <field name="location_dest_id" string="To"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="action_shelving_demo_products" model="ir.actions.act_window">
+            <field name="name">Shelving Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="view_shelving_demo_product_list"/>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_to_sell': 0}</field>
+        </record>
+
+        <record id="action_shelving_demo_bom" model="ir.actions.act_window">
+            <field name="name">Shelving Kit BoM</field>
+            <field name="res_model">mrp.bom</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_bom_lines" model="ir.actions.act_window">
+            <field name="name">Shelving Kit Components</field>
+            <field name="res_model">mrp.bom.line</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_shelving_demo_bom_line_list"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_vendor_prices" model="ir.actions.act_window">
+            <field name="name">Shelving Vendor Prices</field>
+            <field name="res_model">product.supplierinfo</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_shelving_demo_supplierinfo_list"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_reordering_rules" model="ir.actions.act_window">
+            <field name="name">Shelving Reordering Rules</field>
+            <field name="res_model">stock.warehouse.orderpoint</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_shelving_demo_orderpoint_list"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_sale_orders" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Sales Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">list,form,kanban,calendar,pivot,graph,activity</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_purchase_orders" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Purchase Orders</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">list,form,kanban,pivot,graph,calendar,activity</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_receipts" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Receipts</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_mode">list,kanban,form,calendar,activity</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_receipt_lines" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Receipt Lines</field>
+            <field name="res_model">stock.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_shelving_demo_stock_move_list"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_deliveries" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Deliveries</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_mode">list,kanban,form,calendar,activity</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="action_shelving_demo_delivery_lines" model="ir.actions.act_window">
+            <field name="name">Shelving Demo Delivery Lines</field>
+            <field name="res_model">stock.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_shelving_demo_stock_move_list"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem id="menu_shelving_demo_root"
+                  name="Shelving Demo"
+                  parent="stock.menu_stock_root"
+                  sequence="95"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_products"
+                  name="Products"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_products"
+                  sequence="10"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_bom"
+                  name="Kit BoM"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_bom"
+                  sequence="20"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_bom_lines"
+              name="Kit Components"
+              parent="menu_shelving_demo_root"
+              action="action_shelving_demo_bom_lines"
+              sequence="25"
+              groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_vendor_prices"
+                  name="Vendor Prices"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_vendor_prices"
+                  sequence="30"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_reordering_rules"
+                  name="Reordering Rules"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_reordering_rules"
+                  sequence="40"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_sale_orders"
+                  name="Demo Sales Orders"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_sale_orders"
+                  sequence="50"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_purchase_orders"
+                  name="Demo Purchase Orders"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_purchase_orders"
+                  sequence="60"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_receipts"
+                  name="Demo Receipts"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_receipts"
+                  sequence="70"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_receipt_lines"
+                  name="Demo Receipt Lines"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_receipt_lines"
+                  sequence="75"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_deliveries"
+                  name="Demo Deliveries"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_deliveries"
+                  sequence="80"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_delivery_lines"
+                  name="Demo Delivery Lines"
+                  parent="menu_shelving_demo_root"
+                  action="action_shelving_demo_delivery_lines"
+                  sequence="85"
+                  groups="stock.group_stock_user"/>
+
+        <menuitem id="menu_shelving_demo_mrp_root"
+                  name="Shelving Kit Demo"
+                  parent="mrp.menu_mrp_root"
+                  sequence="95"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_mrp_bom"
+                  name="Kit BoM"
+                  parent="menu_shelving_demo_mrp_root"
+                  action="action_shelving_demo_bom"
+                  sequence="10"
+                  groups="stock.group_stock_user"/>
+        <menuitem id="menu_shelving_demo_mrp_bom_lines"
+                  name="Kit Components"
+                  parent="menu_shelving_demo_mrp_root"
+                  action="action_shelving_demo_bom_lines"
+                  sequence="20"
+                  groups="stock.group_stock_user"/>
+    </data>
+</odoo>
