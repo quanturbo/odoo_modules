@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.stock_request</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="Inventory Request"
+                    string="Inventory Request"
+                    name="inventory_request_purchase"
+                    groups="inventory_request_purchase.group_stock_request_manager"
+                >
+                    <h2>Orders &amp; Configuration</h2>
+                    <block id="stock_request">
+                        <setting
+                            help="Activates Inventory Request Orders"
+                            class="text-muted"
+                        >
+                            <field
+                                name="group_stock_request_order"
+                                string="Enable Orders"
+                            />
+                        </setting>
+                        <setting
+                            help="By default only internal and transit locations are allowed in Inventory Request and Orders."
+                            class="text-muted"
+                        >
+                            <field
+                                name="stock_request_allow_virtual_loc"
+                                string="Allow All Locations Types"
+                            />
+                        </setting>
+                        <setting
+                            help="By default, available stock is not used"
+                            class="text-muted"
+                        >
+                            <field
+                                name="stock_request_check_available_first"
+                                string="Check available stock first"
+                            />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_stock_request_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="path">inventory-request-settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'inventory_request_purchase'}</field>
+    </record>
+</odoo>
+
