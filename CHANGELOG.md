@@ -21,6 +21,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.0.0] — 2026-05-16
 
 ### Added
-- `shelving_kit_demo` — kit BoM and demo data for a 4-foot shelving unit
-- `real_estate_lead_hub` — lead inbox and source management for real estate CRM
+- `shelving_kit_demo` — kit BoM and demo data for a 4-foot shelving unit (Odoo 19)
+- `real_estate_lead_hub` — lead inbox and source management for real estate CRM (Odoo 19)
 - `inventory_request_purchase` — internal stock request linked to purchase orders
