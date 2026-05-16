@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_real_estate_lead_inbox_list" model="ir.ui.view">
+            <field name="name">real.estate.lead.inbox.list</field>
+            <field name="model">real.estate.lead.inbox</field>
+            <field name="arch" type="xml">
+                <list string="Imported Real Estate Leads" decoration-success="status == 'converted'" decoration-warning="status == 'duplicate'" decoration-muted="status == 'skipped'" decoration-danger="status == 'failed'">
+                    <field name="score"/>
+                    <field name="contact_name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="city"/>
+                    <field name="district"/>
+                    <field name="property_type"/>
+                    <field name="budget"/>
+                    <field name="is_high_budget" optional="hide"/>
+                    <field name="is_high_score" optional="hide"/>
+                    <field name="source_id"/>
+                    <field name="user_id"/>
+                    <field name="status"/>
+                    <field name="opportunity_id"/>
+                    <field name="import_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_real_estate_lead_inbox_form" model="ir.ui.view">
+            <field name="name">real.estate.lead.inbox.form</field>
+            <field name="model">real.estate.lead.inbox</field>
+            <field name="arch" type="xml">
+                <form string="Imported Lead">
+                    <header>
+                        <button name="action_convert_to_opportunity" string="Convert to Opportunity" type="object" class="btn-primary" invisible="status in ('converted', 'duplicate', 'skipped', 'failed')"/>
+                        <button name="action_open_opportunity" string="Open Opportunity" type="object" invisible="not opportunity_id"/>
+                        <button name="action_skip" string="Skip" type="object" invisible="status in ('converted', 'skipped')"/>
+                        <field name="status" widget="statusbar" statusbar_visible="new,duplicate,converted,skipped,failed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="contact_name"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="city"/>
+                                <field name="district"/>
+                            </group>
+                            <group>
+                                <field name="source_id"/>
+                                <field name="external_id"/>
+                                <field name="property_type"/>
+                                <field name="budget"/>
+                                <field name="score"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="message"/>
+                        </group>
+                        <group string="Assignment">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="team_id"/>
+                            <field name="user_id"/>
+                            <field name="duplicate_inbox_id"/>
+                            <field name="existing_lead_id"/>
+                            <field name="opportunity_id"/>
+                        </group>
+                        <group string="Raw Payload" groups="sales_team.group_sale_manager">
+                            <field name="raw_payload"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_real_estate_lead_inbox_search" model="ir.ui.view">
+            <field name="name">real.estate.lead.inbox.search</field>
+            <field name="model">real.estate.lead.inbox</field>
+            <field name="arch" type="xml">
+                <search string="Imported Leads">
+                    <field name="contact_name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="city"/>
+                    <field name="source_id"/>
+                    <filter string="New" name="new" domain="[('status', '=', 'new')]"/>
+                    <filter string="Duplicates" name="duplicates" domain="[('status', '=', 'duplicate')]"/>
+                    <filter string="Converted" name="converted" domain="[('status', '=', 'converted')]"/>
+                    <filter string="High Budget" name="high_budget" domain="[('is_high_budget', '=', True)]"/>
+                    <filter string="High Score" name="high_score" domain="[('is_high_score', '=', True)]"/>
+                    <group name="group_by">
+                        <filter string="Source" name="group_source" context="{'group_by': 'source_id'}"/>
+                        <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                        <filter string="City" name="group_city" context="{'group_by': 'city'}"/>
+                        <filter string="Realtor" name="group_user" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_real_estate_lead_inbox_pivot" model="ir.ui.view">
+            <field name="name">real.estate.lead.inbox.pivot</field>
+            <field name="model">real.estate.lead.inbox</field>
+            <field name="arch" type="xml">
+                <pivot string="Lead Source Performance" sample="1">
+                    <field name="source_id" type="row"/>
+                    <field name="status" type="col"/>
+                    <field name="score" type="measure"/>
+                    <field name="budget" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="view_real_estate_lead_inbox_graph" model="ir.ui.view">
+            <field name="name">real.estate.lead.inbox.graph</field>
+            <field name="model">real.estate.lead.inbox</field>
+            <field name="arch" type="xml">
+                <graph string="Lead Sources" sample="1">
+                    <field name="source_id"/>
+                    <field name="score" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_real_estate_lead_inbox" model="ir.actions.act_window">
+            <field name="name">Real Estate Lead Inbox</field>
+            <field name="res_model">real.estate.lead.inbox</field>
+            <field name="view_mode">list,form,pivot,graph</field>
+            <field name="search_view_id" ref="view_real_estate_lead_inbox_search"/>
+            <field name="context">{'search_default_new': 1}</field>
+        </record>
+    </data>
+</odoo>

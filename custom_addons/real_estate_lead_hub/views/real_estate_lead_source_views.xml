@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_real_estate_lead_source_list" model="ir.ui.view">
+            <field name="name">real.estate.lead.source.list</field>
+            <field name="model">real.estate.lead.source</field>
+            <field name="arch" type="xml">
+                <list string="Lead Sources">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="source_type"/>
+                    <field name="payload_format"/>
+                    <field name="user_id"/>
+                    <field name="priority_score"/>
+                    <field name="lead_count"/>
+                    <field name="duplicate_count"/>
+                    <field name="converted_count"/>
+                    <field name="last_import_date"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_real_estate_lead_source_form" model="ir.ui.view">
+            <field name="name">real.estate.lead.source.form</field>
+            <field name="model">real.estate.lead.source</field>
+            <field name="arch" type="xml">
+                <form string="Lead Source">
+                    <header>
+                        <button name="action_import_leads" string="Import Leads" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="action" name="%(action_real_estate_lead_inbox)d" class="oe_stat_button" icon="fa-users" context="{'search_default_source_id': id}">
+                                <field name="lead_count" widget="statinfo" string="Leads"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="active"/>
+                                <field name="source_type"/>
+                                <field name="payload_format"/>
+                                <field name="priority_score"/>
+                                <field name="high_budget_threshold"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="team_id"/>
+                                <field name="user_id"/>
+                                <field name="utm_source_id"/>
+                            </group>
+                        </group>
+                        <group string="Import Settings" groups="sales_team.group_sale_manager">
+                            <field name="api_url" placeholder="https://example.com/leads"/>
+                            <field name="api_token" password="True"/>
+                            <field name="api_auth_header"/>
+                            <field name="api_auth_prefix"/>
+                            <field name="api_timeout"/>
+                            <field name="test_payload" placeholder="Paste JSON or XML payload for local testing"/>
+                        </group>
+                        <group string="Lead Score Settings">
+                            <group>
+                                <field name="score_phone"/>
+                                <field name="score_email"/>
+                                <field name="score_urgent"/>
+                                <field name="score_max"/>
+                                <field name="urgent_keywords"/>
+                            </group>
+                            <group>
+                                <field name="budget_high_threshold"/>
+                                <field name="score_budget_high"/>
+                                <field name="budget_medium_threshold"/>
+                                <field name="score_budget_medium"/>
+                                <field name="score_budget_low"/>
+                            </group>
+                        </group>
+                        <group string="Import Status">
+                            <field name="last_import_date"/>
+                            <field name="lead_count"/>
+                            <field name="duplicate_count"/>
+                            <field name="converted_count"/>
+                            <field name="failed_count"/>
+                            <field name="last_error"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_real_estate_lead_source_search" model="ir.ui.view">
+            <field name="name">real.estate.lead.source.search</field>
+            <field name="model">real.estate.lead.source</field>
+            <field name="arch" type="xml">
+                <search string="Lead Sources">
+                    <field name="name"/>
+                    <field name="source_type"/>
+                    <field name="user_id"/>
+                    <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                    <group name="group_by">
+                        <filter string="Channel" name="group_source_type" context="{'group_by': 'source_type'}"/>
+                        <filter string="Realtor" name="group_user" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_real_estate_lead_source" model="ir.actions.act_window">
+            <field name="name">Lead Sources</field>
+            <field name="res_model">real.estate.lead.source</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_real_estate_lead_source_search"/>
+        </record>
+    </data>
+</odoo>
