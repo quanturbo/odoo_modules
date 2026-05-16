@@ -1,0 +1,25 @@
+{
+    "name": "Inventory Request Purchasing",
+    "summary": "Plan inventory needs and trace linked purchases",
+    "version": "19.0.1.0.0",
+    "license": "LGPL-3",
+    "author": "Custom Development",
+    "category": "Inventory/Inventory",
+    "depends": ["stock", "purchase", "purchase_stock"],
+    "data": [
+        "security/inventory_request_security.xml",
+        "security/ir.model.access.csv",
+        "views/inventory_request_views.xml",
+        "views/inventory_request_allocation_views.xml",
+        "views/stock_move_views.xml",
+        "views/stock_picking_views.xml",
+        "views/inventory_request_order_views.xml",
+        "views/purchase_order_views.xml",
+        "views/res_config_settings_views.xml",
+        "views/inventory_request_menu.xml",
+        "data/inventory_request_sequence_data.xml",
+    ],
+    "installable": True,
+    "application": True,
+}
+

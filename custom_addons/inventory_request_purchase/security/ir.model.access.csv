@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_request_user,inventory request user,model_stock_request,group_stock_request_user,1,1,1,0
+access_stock_request_manager,inventory request manager,model_stock_request,group_stock_request_manager,1,1,1,1
+access_stock_request_order_user,inventory request order user,model_stock_request_order,group_stock_request_order,1,1,1,0
+access_stock_request_order_manager,inventory request order manager,model_stock_request_order,group_stock_request_manager,1,1,1,1
+access_stock_request_allocation_user,inventory request allocation user,model_stock_request_allocation,group_stock_request_user,1,0,0,0
+access_stock_request_allocation_manager,inventory request allocation manager,model_stock_request_allocation,group_stock_request_manager,1,1,1,1
+access_stock_request_allocation_purchase_user,inventory request allocation purchase user,model_stock_request_allocation,purchase.group_purchase_user,1,0,0,0
