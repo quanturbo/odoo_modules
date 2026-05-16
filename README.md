@@ -1,6 +1,6 @@
 # Odoo Three Modules Project
 
-This repository contains three custom Odoo modules:
+This repository keeps three custom Odoo modules at repository root:
 
 - shelving_kit_demo
 - real_estate_lead_hub
