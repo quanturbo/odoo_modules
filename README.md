@@ -11,3 +11,7 @@ This repository contains three custom Odoo modules:
 - main: stable branch
 - dev: integration branch
 - feature branches: one module or change per branch
+## Activity Update
+
+- Added all three modules via feature branches.
+- Keeping this repository as the shared delivery unit for deployments.
