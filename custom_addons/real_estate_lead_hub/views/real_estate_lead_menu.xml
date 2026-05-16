@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_real_estate_lead_hub" name="Real Estate Lead Hub" parent="crm.crm_menu_root" sequence="6"/>
+        <menuitem id="menu_real_estate_lead_inbox" name="Lead Inbox" parent="menu_real_estate_lead_hub" action="action_real_estate_lead_inbox" sequence="1"/>
+        <menuitem id="menu_real_estate_lead_source" name="Lead Sources" parent="menu_real_estate_lead_hub" action="action_real_estate_lead_source" sequence="2" groups="sales_team.group_sale_manager"/>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_real_estate_lead_source_user,real estate lead source user,model_real_estate_lead_source,sales_team.group_sale_salesman,1,0,0,0
+access_real_estate_lead_source_manager,real estate lead source manager,model_real_estate_lead_source,sales_team.group_sale_manager,1,1,1,1
+access_real_estate_lead_inbox_user,real estate lead inbox user,model_real_estate_lead_inbox,sales_team.group_sale_salesman,1,1,1,0
+access_real_estate_lead_inbox_manager,real estate lead inbox manager,model_real_estate_lead_inbox,sales_team.group_sale_manager,1,1,1,1
