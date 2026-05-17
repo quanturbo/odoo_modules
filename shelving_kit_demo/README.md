@@ -1,5 +1,7 @@
 # Shelving Kit Demo
 
+This module helps a company sell a kit product without losing control of stock availability or supplier cost logic. When the parent kit is sold, Odoo reserves the real component items, which reduces overselling and fulfillment mistakes. It also stores vendor list price and discount separately, so net cost updates automatically when supplier prices change.
+
 This addon builds a complete Odoo 19 inventory, purchasing, sales, and kit BoM setup for one sellable shelving SKU:
 
 - Parent SKU: `FG/RHG/DHG`

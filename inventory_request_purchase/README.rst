@@ -1,9 +1,11 @@
 Inventory Request Purchasing
 ============================
 
-Inventory Request Purchasing is a single Odoo 19 addon for internal inventory requests and purchase procurement tracking.
+Inventory Request Purchasing gives warehouse and purchasing teams one clear workflow for internal stock requests, urgent priorities, and purchase follow-up.
 
-The addon provides one Inventory workflow for warehouse users, inventory managers, and purchasers. Users can request products, group related needs, prioritize urgent replenishment, and trace which purchases or receipts cover each request.
+It helps users see what is still waiting, what has already been ordered or received, and which purchase documents cover each request. The workflow is kept in one Odoo application with clear model and view separation, so it stays easier to use day to day and easier to extend later.
+
+This is a single Odoo 19 addon for internal inventory requests and purchase procurement tracking.
 
 Scope
 =====

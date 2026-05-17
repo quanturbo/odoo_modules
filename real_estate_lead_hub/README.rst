@@ -1,12 +1,12 @@
 Real Estate Lead Hub
 ====================
 
+Real Estate Lead Hub gives a real estate agency one review inbox for leads coming from Meta ads, marketplace feeds, and website forms before they enter CRM.
+
+It reduces duplicate work, helps managers focus on better leads first, and keeps conversion into standard Odoo opportunities simple for the sales team. The first version stays intentionally small and readable, so new import channels and scoring rules are easier to maintain later.
+
 Real Estate Lead Hub is a small Odoo CRM module for agencies that receive client
 requests from Meta Lead Ads, real estate marketplaces, and website feeds.
-
-The module gives managers one review inbox before leads enter the CRM pipeline.
-Imported requests can be checked for duplicates, scored, assigned to a realtor,
-and converted into CRM opportunities.
 
 What it demonstrates
 --------------------
